@@ -6,15 +6,24 @@ function computerPlay() {
 }
 
 function informWin(playerSelection, computerSelection) {
-  return (result = `You win! ${playerSelection} beats ${computerSelection}`);
+  return (result = `You win! ${capitalize(playerSelection)} beats ${capitalize(
+    computerSelection
+  )}`);
 }
 function informLoss(playerSelection, computerSelection) {
-  return (result = `You lose! ${computerSelection} beats ${playerSelection}`);
+  return (result = `You lose! ${capitalize(
+    computerSelection
+  )} beats ${capitalize(playerSelection)}`);
+}
+
+function capitalize(string) {
+  return (string = string.charAt(0).toUpperCase() + string.slice(1));
 }
 
 function playRound(playerSelection, computerSelection) {
   // create variable named result
   let result;
+  playerSelection = playerSelection.toLowerCase();
   computerSelection = computerSelection.toLowerCase();
   if (playerSelection === "rock" && computerSelection === "scissors") {
     result = informWin(playerSelection, computerSelection);
@@ -36,7 +45,9 @@ function playRound(playerSelection, computerSelection) {
   }
   // If playerSelection = computerSelection -> tie
   if (playerSelection === computerSelection) {
-    result = `It's a tie! ${playerSelection} equals ${computerSelection}`;
+    result = `It's a tie! ${capitalize(playerSelection)} equals ${capitalize(
+      computerSelection
+    )}`;
   }
   // return result
   return result;
