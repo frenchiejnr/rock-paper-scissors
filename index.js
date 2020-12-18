@@ -10,7 +10,7 @@ function computerPlay() {
 }
 
 function playerPlay() {
-  let buttons = document.querySelectorAll('.choices');
+  let buttons = document.querySelectorAll('.choice');
 
   buttons.forEach(button => {
     button.addEventListener('click', (e) => {
