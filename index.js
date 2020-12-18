@@ -40,9 +40,16 @@ function capitalize(string) {
 function playRound(playerSelection, computerSelection) {
   // create variable named result
   let result;
+  let playerSelectionInput = document.querySelector('#playerSelection');
+  let computerSelectionInput = document.querySelector('#computerSelection');
+  let resultInput = document.querySelector('#result');
+  
+  playerSelectionInput.value = playerSelection;
+  computerSelectionInput.value = computerSelection;
+  
   playerSelection = playerSelection.toLowerCase();
   computerSelection = computerSelection.toLowerCase();
-  console.log(playerSelection, computerSelection);
+  
   if (playerSelection === "rock" && computerSelection === "scissors") {
     result = informWin(playerSelection, computerSelection);
   }
@@ -64,9 +71,11 @@ function playRound(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
     result = `It's a tie! ${capitalize(playerSelection)} equals ${capitalize(
       computerSelection
-    )}`;
-  }
-  return result;
+      )}`;
+    }
+
+    resultInput.value = result;
+    return result;
 }
 
 function game() {
