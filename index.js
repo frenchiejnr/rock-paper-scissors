@@ -10,11 +10,14 @@ function computerPlay() {
 }
 
 function playerPlay() {
-  let choice = prompt("Choose Rock, Paper, or Scissors!").toLowerCase();
-  while (choice !== "rock" && choice !== "paper" && choice !== "scissors"){
-    choice = prompt("Invalid Choice. Please choose Rock, Paper, or Scissors!").toLowerCase();
-  }
-  return choice;
+  let buttons = document.querySelectorAll('.choices');
+
+  buttons.forEach(button => {
+    button.addEventListener('click', (e) => {
+      playRound(e.target.innerText ,computerPlay());
+    }
+    )
+  });
 }
 
 function informWin(playerSelection, computerSelection) {
@@ -39,7 +42,7 @@ function playRound(playerSelection, computerSelection) {
   let result;
   playerSelection = playerSelection.toLowerCase();
   computerSelection = computerSelection.toLowerCase();
-  console.log(playerSelection, computerSelection)
+  console.log(playerSelection, computerSelection);
   if (playerSelection === "rock" && computerSelection === "scissors") {
     result = informWin(playerSelection, computerSelection);
   }
@@ -67,6 +70,7 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
+  playerPlay();
   if (playerScore === 5) {
     console.log("You Won!", playerScore, computerScore);
   } else {
