@@ -67,10 +67,6 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
-  while (playerScore < 5 && computerScore < 5 ) {
-    console.log(playRound(playerPlay(), computerPlay()));
-    console.log(playerScore, computerScore);
-  }
   if (playerScore === 5) {
     console.log("You Won!", playerScore, computerScore);
   } else {
