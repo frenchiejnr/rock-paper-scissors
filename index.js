@@ -1,4 +1,4 @@
-let score = [0,0];
+let score = [0, 0];
 let playerScore = score[0];
 let computerScore = score[1];
 let choices = ["Rock", "Paper", "Scissors"];
@@ -10,13 +10,12 @@ function computerPlay() {
 }
 
 function playerPlay() {
-  let buttons = document.querySelectorAll('.choice');
+  let buttons = document.querySelectorAll(".choice");
 
-  buttons.forEach(button => {
-    button.addEventListener('click', (e) => {
-      playRound(e.target.innerText ,computerPlay());
-    }
-    )
+  buttons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+      playRound(e.target.innerText, computerPlay());
+    });
   });
 }
 
@@ -39,15 +38,15 @@ function capitalize(string) {
 
 function playRound(playerSelection, computerSelection) {
   let result;
-  let playerSelectionInput = document.querySelector('#playerSelection');
-  let computerSelectionInput = document.querySelector('#computerSelection');
-  let resultInput = document.querySelector('#result');
-  let playerScoreText = document.querySelector('#playerScore');
-  let computerScoreText = document.querySelector('#computerScore');
-  
+  let playerSelectionInput = document.querySelector("#playerSelection");
+  let computerSelectionInput = document.querySelector("#computerSelection");
+  let resultInput = document.querySelector("#result");
+  let playerScoreText = document.querySelector("#playerScore");
+  let computerScoreText = document.querySelector("#computerScore");
+
   playerSelectionInput.value = playerSelection;
   computerSelectionInput.value = computerSelection;
-  
+
   playerSelection = playerSelection.toLowerCase();
   computerSelection = computerSelection.toLowerCase();
 
@@ -72,22 +71,17 @@ function playRound(playerSelection, computerSelection) {
   if (playerSelection === computerSelection) {
     result = `It's a tie! ${capitalize(playerSelection)} equals ${capitalize(
       computerSelection
-      )}`;
-    }
+    )}`;
+  }
 
-    resultInput.value = result;
-    playerScoreText.value = playerScore;
+  resultInput.value = result;
+  playerScoreText.value = playerScore;
     computerScoreText.value = computerScore
-    return result;
+  return result;
 }
 
 function game() {
   playerPlay();
-  if (playerScore === 5) {
-    console.log("You Won!", playerScore, computerScore);
-  } else {
-    console.log("You Lost!", playerScore, computerScore);
-  }
 }
 
 game();
