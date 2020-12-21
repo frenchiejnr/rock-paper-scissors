@@ -76,8 +76,33 @@ function playRound(playerSelection, computerSelection) {
 
   resultInput.value = result;
   playerScoreText.value = playerScore;
-    computerScoreText.value = computerScore
+  computerScoreText.value = computerScore;
+  let gameFinished = checkWinner();
+
+  if (gameFinished) {
+    disableButtons();
+  }
   return result;
+}
+
+function disableButtons() {
+  let buttons = document.querySelectorAll(".choice");
+
+  buttons.forEach((button) => {
+    button.disabled = true;
+  });
+}
+
+function checkWinner() {
+  let gameFinished = false;
+  if (playerScore === 5) {
+    gameFinished = true;
+    alert(`You Won! ${playerScore} - ${computerScore}`);
+  } else if (computerScore === 5) {
+    gameFinished = true;
+    alert(`You Lost! ${playerScore} - ${computerScore}`);
+  }
+  return gameFinished;
 }
 
 function game() {
