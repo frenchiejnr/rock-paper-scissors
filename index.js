@@ -38,18 +38,19 @@ function capitalize(string) {
 }
 
 function playRound(playerSelection, computerSelection) {
-  // create variable named result
   let result;
   let playerSelectionInput = document.querySelector('#playerSelection');
   let computerSelectionInput = document.querySelector('#computerSelection');
   let resultInput = document.querySelector('#result');
+  let playerScoreText = document.querySelector('#playerScore');
+  let computerScoreText = document.querySelector('#computerScore');
   
   playerSelectionInput.value = playerSelection;
   computerSelectionInput.value = computerSelection;
   
   playerSelection = playerSelection.toLowerCase();
   computerSelection = computerSelection.toLowerCase();
-  
+
   if (playerSelection === "rock" && computerSelection === "scissors") {
     result = informWin(playerSelection, computerSelection);
   }
@@ -75,6 +76,8 @@ function playRound(playerSelection, computerSelection) {
     }
 
     resultInput.value = result;
+    playerScoreText.value = playerScore;
+    computerScoreText.value = computerScore
     return result;
 }
 
