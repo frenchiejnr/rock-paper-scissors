@@ -1,4 +1,4 @@
-let score = [0, 0];
+let score = [0,0];
 let playerScore = score[0];
 let computerScore = score[1];
 let choices = ["Rock", "Paper", "Scissors"];
@@ -10,13 +10,11 @@ function computerPlay() {
 }
 
 function playerPlay() {
-  let buttons = document.querySelectorAll(".choice");
-
-  buttons.forEach((button) => {
-    button.addEventListener("click", (e) => {
-      playRound(e.target.innerText, computerPlay());
-    });
-  });
+  let choice = prompt("Choose Rock, Paper, or Scissors!").toLowerCase();
+  while (choice !== "rock" && choice !== "paper" && choice !== "scissors"){
+    choice = prompt("Invalid Choice. Please choose Rock, Paper, or Scissors!").toLowerCase();
+  }
+  return choice;
 }
 
 function informWin(playerSelection, computerSelection) {
@@ -37,19 +35,11 @@ function capitalize(string) {
 }
 
 function playRound(playerSelection, computerSelection) {
+  // create variable named result
   let result;
-  let playerSelectionInput = document.querySelector("#playerSelection");
-  let computerSelectionInput = document.querySelector("#computerSelection");
-  let resultInput = document.querySelector("#result");
-  let playerScoreText = document.querySelector("#playerScore");
-  let computerScoreText = document.querySelector("#computerScore");
-
-  playerSelectionInput.value = playerSelection;
-  computerSelectionInput.value = computerSelection;
-
   playerSelection = playerSelection.toLowerCase();
   computerSelection = computerSelection.toLowerCase();
-
+  console.log(playerSelection, computerSelection)
   if (playerSelection === "rock" && computerSelection === "scissors") {
     result = informWin(playerSelection, computerSelection);
   }
@@ -73,40 +63,19 @@ function playRound(playerSelection, computerSelection) {
       computerSelection
     )}`;
   }
-
-  resultInput.value = result;
-  playerScoreText.value = playerScore;
-  computerScoreText.value = computerScore;
-  let gameFinished = checkWinner();
-
-  if (gameFinished) {
-    disableButtons();
-  }
   return result;
 }
 
-function disableButtons() {
-  let buttons = document.querySelectorAll(".choice");
-
-  buttons.forEach((button) => {
-    button.disabled = true;
-  });
-}
-
-function checkWinner() {
-  let gameFinished = false;
-  if (playerScore === 5) {
-    gameFinished = true;
-    alert(`You Won! ${playerScore} - ${computerScore}`);
-  } else if (computerScore === 5) {
-    gameFinished = true;
-    alert(`You Lost! ${playerScore} - ${computerScore}`);
-  }
-  return gameFinished;
-}
-
 function game() {
-  playerPlay();
+  while (playerScore < 5 && computerScore < 5 ) {
+    console.log(playRound(playerPlay(), computerPlay()));
+    console.log(playerScore, computerScore);
+  }
+  if (playerScore === 5) {
+    console.log("You Won!", playerScore, computerScore);
+  } else {
+    console.log("You Lost!", playerScore, computerScore);
+  }
 }
 
 game();
